@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Activity</title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	
+	<!--Train Tracker-->
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">Trainspotting</h1>
+			<h3 class="text-center">Choo Choo</h3>
+		</div>
+		<!--Table -->
+		<div class="panel panel-info">
+			<div class="panel-heading"><h4>Current Schedule</h4></div>
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>Train Name</th>
+						<th>Destination</th>
+						<th>Frequency(min)</th>
+						<th>Next Arrival</th>
+						<th>Minutes Away</th>
+					</tr>
+				</table>
+			</div>
+		</div>
 
+		<!--Form-->
+		<div class="panel panel-info">
+			<div class="panel-heading"><h4>Add Train</h4></div>
+			<div class="panel-body">
+				<form action="">
+					<div class="form-group">
+						<label>Train Name</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Destination</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>First Train Time(HH:mm - military time)</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Frequency (min)</label>
+						<input type="text" class="form-control">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+<!-- JQuery, Moment.js, Firebase -->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+<script type="text/javascript">
+
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDtVG5YDE6ULEymmmVSew-JH_53LEaBox8",
+    authDomain: "allyourbase-5e700.firebaseapp.com",
+    databaseURL: "https://allyourbase-5e700.firebaseio.com",
+    projectId: "allyourbase-5e700",
+    storageBucket: "allyourbase-5e700.appspot.com",
+    messagingSenderId: "777682871332"
+  };
+  
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+	
+</script>
+
+</body>
+</html>
