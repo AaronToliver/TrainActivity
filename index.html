@@ -8,7 +8,7 @@
 <body>
 	
 	<!--Train Tracker-->
-	<div class="container">
+	<div class="container-fluid" style="background-image: url(https://cdn1.epicgames.com/ue/item/SteampunkAirship_screenshot1-1920x1080-1ae3810cf9702b4be3c3288531c682af.png)">
 		<div class="jumbotron">
 			<h1 class="text-center">Trainspotting</h1>
 			<h3 class="text-center">Choo Choo</h3>
@@ -31,7 +31,7 @@
 
 		<!--Form-->
 		<div class="panel panel-info">
-			<div class="panel-heading"><h4>Add Train</h4></div>
+			<div class="panel-heading" id="add"><h4>Add Train</h4></div>
 			<div class="panel-body">
 				<form action="">
 					<div class="form-group">
@@ -50,6 +50,7 @@
 						<label>Frequency (min)</label>
 						<input type="text" class="form-control" id="inputFq">
 					</div>
+					<button class="btn btn-info" id="submit">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -77,6 +78,68 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
+
+  //button for adding trains
+  $("#submit").on("click", function(event){
+  	event.preventDefault();
+
+  //user input
+  var trainName = $("#inputName").val().trim();
+  var trainDest = $("#inputDest").val().trim();
+  var trainTime = $("#inputFTT").val().trim();
+  var trainFreq = $("#inputFq").val().trim();
+  
+  //current time
+  var currTime = moment();
+  //convertine
+  var currTimeConv = moment(currTime).format("hh:mm");
+  //local object
+  var newTrain = {
+  	name: trainName,
+  	destination: trainDest,
+  	time: trainTime,
+  	frequency: trainFreq
+  };  
+
+  //uploads to database
+  database.ref().push(newTrain);
+
+  //console log
+  console.log(newTrain.name);
+  console.log(newTrain.destination);
+  console.log(newTrain.time);
+  console.log(newTrain.frequency);
+  console.log(currTimeConv);
+
+  //reset
+  $("#inputName").val("");
+  $("#inputDest").val("");
+  $("#inputFTT").val("");
+  $("#inputFq").val("");
+
+  });
+
+  database.ref().on("child_added", function(childSnapshot, prevChildKey){
+
+  	console.log(childSnapshot.val());
+
+  	//variable storage
+  	var trainName = childSnapshot.val().name;
+  	var trainDest = childSnapshot.val().destination;
+  	var trainTime = childSnapshot.val().time;
+  	var trainFreq = childSnapshot.val().frequency;
+  	var trainCurr = childSnapshot.val().currTimeConv;
+
+  	//math time
+  	/*current time already converted and logged
+  	difference in time = diff function FTT
+  	time appart = diff time divided by frequency
+  	minutes till = frequency - diff
+  	next =  moment add "minutes"*/
+  	
+
+
+  })
 	
 </script>
 
